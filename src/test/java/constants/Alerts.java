@@ -1,11 +1,11 @@
-package helpers;
+package constants;
 
 public enum Alerts {
 
     PRIVACY("Warning: You must agree to the Privacy Policy!"),
-    EMPTYNAME("First Name must be between 1 and 32 characters!");
+    EMPTY_NAME("First Name must be between 1 and 32 characters!");
 
-    String message;
+    final String message;
 
     Alerts(String message) {
         this.message = message;

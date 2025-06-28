@@ -4,13 +4,13 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
 public class RegistrationSuccessPage extends BasePage {
-    private Locator successMessage;
-    private Locator title;
+    private final Locator successMessage;
+    private final Locator title;
 
     public RegistrationSuccessPage(Page page) {
         super(page);
         successMessage = page.locator("xpath=//p[contains(text(), 'Congratulations!')]");
-        title = page.locator("xpath=//h1[text()=\"Account\"]");
+        title = page.locator("xpath=//h1[text()='Account']");
     }
 
     @Override
@@ -18,7 +18,10 @@ public class RegistrationSuccessPage extends BasePage {
         title.waitFor(new Locator.WaitForOptions().setTimeout(1000));
     }
 
-    public Locator getSuccessMessage() {
-        return successMessage;
+    public boolean getSuccessMessage() {
+        successMessage.waitFor(new Locator.WaitForOptions().setTimeout(3000));
+        return successMessage.isVisible();
     }
+
+
 }

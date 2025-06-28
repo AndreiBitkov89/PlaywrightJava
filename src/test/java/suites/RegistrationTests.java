@@ -5,14 +5,13 @@ import pages.PageManager;
 import utils.NewUserFactory;
 import utils.RandomDataGenerator;
 import valueObjects.NewUser;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-import static helpers.Alerts.*;
+import static constants.Alerts.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegistrationTests extends BaseTest {
     private NewUser newUser;
     private PageManager pageManager;
-
     private String password;
 
     @BeforeEach
@@ -28,7 +27,7 @@ public class RegistrationTests extends BaseTest {
     public void successfulRegistration() {
         pageManager.topLinksBlock().goToRegister();
         pageManager.registrationPage().registerUser(newUser, true, true);
-        assertThat(pageManager.successPage().getSuccessMessage()).isVisible();
+        assertTrue(pageManager.successPage().getSuccessMessage());
     }
 
     @Test
@@ -37,7 +36,7 @@ public class RegistrationTests extends BaseTest {
     public void shouldReturnMistakeAfterRegistrationWithoutPolicy() {
         pageManager.topLinksBlock().goToRegister();
         pageManager.registrationPage().registerUser(newUser, false, true);
-        assertThat(pageManager.registrationPage().getPolicyAlert()).hasText(PRIVACY.getMessage());
+        assertEquals(PRIVACY.getMessage(), pageManager.registrationPage().getPolicyAlertText());
     }
 
     @Test
@@ -54,6 +53,6 @@ public class RegistrationTests extends BaseTest {
 
         pageManager.topLinksBlock().goToRegister();
         pageManager.registrationPage().registerUser(newUser, true, false);
-        assertThat(pageManager.registrationPage().getFieldAlert()).hasText(EMPTYNAME.getMessage());
+        assertEquals(EMPTY_NAME.getMessage(), pageManager.registrationPage().getFieldAlertText());
     }
 }

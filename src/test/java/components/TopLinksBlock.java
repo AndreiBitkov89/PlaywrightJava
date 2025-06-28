@@ -9,9 +9,9 @@ import pages.BasePage;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class TopLinksBlock extends BasePage {
-    private Locator topLinksBlock;
-    private Locator dropDownMenu;
-    private Locator registerLink;
+    private final Locator topLinksBlock;
+    private final Locator dropDownMenu;
+    private final Locator registerLink;
 
     public TopLinksBlock(Page page) {
         super(page);

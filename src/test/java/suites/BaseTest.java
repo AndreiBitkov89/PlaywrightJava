@@ -2,9 +2,13 @@ package suites;
 
 import com.microsoft.playwright.*;
 import config.Config;
+import extension.TestResultWatcher;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import java.awt.*;
 
+@ExtendWith(TestResultWatcher.class)
 public class BaseTest {
     protected Playwright playwright;
     protected Browser browser;
@@ -24,12 +28,14 @@ public class BaseTest {
         page = context.newPage();
         page.navigate(url);
 
+        TestResultWatcher.setPage(page);
+
     }
 
     @AfterEach
     public void tearDown(){
-        page.close();
-        playwright.close();
+        if (page != null) page.close();
+        if (playwright != null) playwright.close();
     }
 
 

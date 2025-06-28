@@ -43,12 +43,12 @@ public class RegistrationPage extends BasePage {
         personalBlock.waitFor(new Locator.WaitForOptions().setTimeout(1000));
     }
 
-    public Locator getPolicyAlert() {
-        return policyAlert;
+    public String getPolicyAlertText() {
+        return policyAlert.textContent().trim();
     }
 
-    public Locator getFieldAlert() {
-        return fieldAlert;
+    public String getFieldAlertText() {
+        return fieldAlert.textContent().trim();
     }
 
     public void registerUser(NewUser user, boolean policyChecked, boolean positive) {
