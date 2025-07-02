@@ -12,12 +12,14 @@ public class TopLinksBlock extends BasePage {
     private final Locator topLinksBlock;
     private final Locator dropDownMenu;
     private final Locator registerLink;
+    private final Locator loginLink;
 
     public TopLinksBlock(Page page) {
         super(page);
         topLinksBlock = page.locator("#top-links");
         dropDownMenu = page.locator("ul.dropdown-menu-right");
         registerLink = dropDownMenu.getByText("Register");
+        loginLink = dropDownMenu.getByText("Login");
     }
 
     @Override
@@ -30,5 +32,12 @@ public class TopLinksBlock extends BasePage {
         topLinksBlock.locator(".dropdown").click();
         assertThat(dropDownMenu).isVisible(new LocatorAssertions.IsVisibleOptions().setTimeout(1000));
         registerLink.click();
+    }
+
+    public void goToLogin(){
+        waitForLoading();
+        topLinksBlock.locator(".dropdown").click();
+        assertThat(dropDownMenu).isVisible(new LocatorAssertions.IsVisibleOptions().setTimeout(1000));
+        loginLink.click();
     }
 }

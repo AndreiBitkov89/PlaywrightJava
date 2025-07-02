@@ -27,7 +27,6 @@ public class RegistrationPage extends BasePage {
         this.personalBlock = page.locator("fieldset#account");
         this.policyAlert = page.locator(".alert");
         this.fieldAlert = page.locator(".text-danger");
-
         this.firstNameInput = page.locator("#input-firstname");
         this.lastNameInput = page.locator("#input-lastname");
         this.emailInput = page.locator("#input-email");

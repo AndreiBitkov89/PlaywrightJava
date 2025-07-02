@@ -22,6 +22,14 @@ public class PageManager {
         return new RegistrationSuccessPage(page);
     }
 
+    public LoginPage loginPage(){
+        return new LoginPage(page);
+    }
+
+    public AccountPage accountPage(){
+        return new AccountPage(page);
+    }
+
 
     public NavigationMenu navigationMenu() {
         return new NavigationMenu(page);
